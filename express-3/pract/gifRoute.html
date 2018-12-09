@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <meta charset="utf-8" />
+    <title></title>
+    <style media="screen">
+      body {
+        background: skyblue;
+      }
+      h1 {
+        font-size: 40px;
+        color: white;
+      }
+    </style>
+    <script type="text/javascript ">
+      document.addEventListener("DOMContentLoaded", () => {
+        let state = { name: "", email: "" };
+        let form = document.querySelector(".userData");
+        form.addEventListener("change", event => {
+          state[event.target.name] = event.target.value;
+        });
+
+        let button = document.querySelector("button");
+        button.addEventListener("click", e => {
+          e.preventDefault();
+          axios.post("/api/contact", state).then(res => {
+            debugger;
+            console.log(res);
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>HELLO WORLD!</h1>
+    <p>This is some pretty cool stuff!</p>
+
+    <form class="userData">
+      EMAIL <input type="text" name="email" value="" /> NAME
+      <input type="text" name="name" value="" />
+      <button type="button" name="button">SUBMIT</button>
+    </form>
+  </body>
+</html>
